@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { Component, ReactComponentElement } from 'react';
 
-import { ExampleComponent } from 'multi-tier-menu'
-import 'multi-tier-menu/dist/index.css'
+import { MultiTierMenu } from 'multi-tier-menu';
+import 'multi-tier-menu/dist/index.css';
 
-const App = () => {
-  return <ExampleComponent text="Create React Library Example 😄" />
+
+export default class App extends Component<any> {
+  public render(): ReactComponentElement<any> {
+    return (
+      <MultiTierMenu text="Working widget 😄" />
+    );
+  }
 }
-
-export default App

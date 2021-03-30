@@ -1,10 +1,13 @@
-import * as React from 'react'
-import styles from './styles.module.css'
+import * as React from 'react';
+import { Component, ReactComponentElement } from 'react';
+import './styles.module.scss';
 
-interface Props {
-  text: string
-}
-
-export const ExampleComponent = ({ text }: Props) => {
-  return <div className={styles.test}>Example Component: {text}</div>
+export class MultiTierMenu extends Component<any> {
+  public render(): ReactComponentElement<any> {
+    return (
+      <div className="test">
+        Example Component: {this.props.text}
+      </div>
+    );
+  }
 }

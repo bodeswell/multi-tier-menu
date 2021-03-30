@@ -15,16 +15,12 @@ npm install --save multi-tier-menu
 ```tsx
 import React, { Component } from 'react'
 
-import MyComponent from 'multi-tier-menu'
+import MultiTierMenu from 'multi-tier-menu'
 import 'multi-tier-menu/dist/index.css'
 
 class Example extends Component {
   render() {
-    return <MyComponent />
+    return <MultiTierMenu />
   }
 }
 ```
-
-## License
-
-MIT © [avigold](https://github.com/avigold)
