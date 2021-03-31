@@ -57,6 +57,8 @@
 
             li {
                 width: 100%;
+                padding-top: 5px;
+                padding-bottom: 5px;
                 .itemText {
                     margin-left: 10px;
                     font-style: normal;
@@ -81,6 +83,12 @@
                     color: #525374;
                     margin-left: 10px;
                     margin-right: 10px;
+                }
+
+                hr {
+                    margin-top: 10px;
+                    width: 90%;
+                    margin-left: 5%;
                 }
             }
 

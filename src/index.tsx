@@ -23,6 +23,7 @@ interface MenuProps extends Component {
 
 interface MenuState {
     mainMenu: boolean;
+    hoverPosition?: number;
     secondaryMenu?: MenuItem;
     selection?: MenuItem;
 }
@@ -30,6 +31,7 @@ interface MenuState {
 export class MultiTierMenu extends Component<any, MenuState> {
     public state = {
         mainMenu: false,
+        hoverPosition: 56,
         secondaryMenu: {} as MenuItem,
         selection: {} as MenuItem
     };
@@ -80,14 +82,21 @@ export class MultiTierMenu extends Component<any, MenuState> {
                 <div className={styles.itemDesc}>
                     {menuItem.description}
                 </div> : null;
+            const hasSeparator: JSX.Element | null = menuItem.separator ? <hr/> : null;
 
             layoutItems.push(
                 <li key={`item-${menuItem.label}`}
-                    onMouseOver={() => this.setState({ secondaryMenu: menuItem })}
+                    onMouseOver={(e: any) => {
+                        this.setState({
+                            secondaryMenu: menuItem,
+                            hoverPosition: this.getRelativeHeight(e, $(`.${styles.mtmMenu}`).first().get(0))
+                        });
+                    }}
                     onClick={(e) => this.sendSelection(e, menuItem)}>
                     <span className={styles.itemText}>{menuItem.label}</span>
                     {rightArrow}
                     {description}
+                    {hasSeparator}
                 </li>
             );
         }
@@ -98,11 +107,13 @@ export class MultiTierMenu extends Component<any, MenuState> {
                     <div className={styles.itemDesc}>
                         {child.description}
                     </div> : null;
+                const hasSeparator: JSX.Element | null = child.separator ? <hr/> : null;
 
                 secondLayoutItems.push(
                     <li key={`item-${child.label}`} onClick={(e) => this.sendSelection(e, child)}>
                         <span className={styles.itemText}>{child.label}</span>
                         {description}
+                        {hasSeparator}
                     </li>
                 );
             }
@@ -117,7 +128,7 @@ export class MultiTierMenu extends Component<any, MenuState> {
         ) : null;
 
         const secondLayout: JSX.Element | null = secondLayoutItems.length ? (
-            <div className={styles.mtmMenu}>
+            <div className={styles.mtmMenu} style={{top: `${this.state.hoverPosition + 56}px`}}>
                 <ul>
                     {secondLayoutItems}
                 </ul>
@@ -132,6 +143,11 @@ export class MultiTierMenu extends Component<any, MenuState> {
         );
     }
 
+    private getRelativeHeight(event: any, target: any = event.target): number {
+        const bounds: DOMRect = target.getBoundingClientRect();
+        return event.clientY - bounds.top;
+    }
+
     private openMenu(): void {
         if (_.isEmpty(this.state.mainMenu))
             this.setState({ mainMenu: true });
@@ -139,7 +155,7 @@ export class MultiTierMenu extends Component<any, MenuState> {
 
     private sendSelection(event: any, selection: MenuItem): void {
         event.stopPropagation();
-        this.setState({ selection: selection, mainMenu: false, secondaryMenu: undefined });
+        this.setState({ selection: selection, mainMenu: false, secondaryMenu: undefined, hoverPosition: undefined });
         if (this.props.callback) this.props.callback(selection);
     }
 
@@ -148,7 +164,7 @@ export class MultiTierMenu extends Component<any, MenuState> {
         $(document).on('click.menuclose', (event: any) => {
             const $target: JQuery = $(event.target).first();
             if (!$target.hasClass(styles.mtmContainer) && !$target.parents(`.${styles.mtmContainer}`).length) {
-                this.setState({ mainMenu: false, secondaryMenu: undefined });
+                this.setState({ mainMenu: false, secondaryMenu: undefined, hoverPosition: undefined });
             } else {
                 return;
             }

@@ -12,7 +12,7 @@ export default class App extends Component<any> {
             label: 'Default Selection',
             value: 'default',
             description: 'A basic budget to manage your overall spending month to month.',
-            separator: false
+            separator: true
         },
         {
             label: 'Parent2',
