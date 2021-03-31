@@ -1,0 +1,99 @@
+.mtmContainer {
+    width: 240px;
+    height: 56px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%), #D6D7DD;
+    border-radius: 8px;
+    cursor: pointer;
+
+    .selectText {
+        position: relative;
+        z-index: 1;
+        left: 15px;
+        top: calc(50% - 26px / 2);
+        font-family: Poppins;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 160%;
+        color: #006F9E;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 170px;
+        user-select: none;
+    }
+
+    .arrow {
+        border: solid #006F9E;
+        border-width: 0 3px 3px 0;
+        display: inline-block;
+        padding: 3px;
+        position: relative;
+        left: 87%;
+        top: -10px;
+        bottom: 36.28%;
+    }
+
+    .arrowDown {
+        transform: rotate(45deg);
+        -webkit-transform: rotate(45deg);
+    }
+
+    .arrowRight {
+        transform: rotate(-45deg);
+        -webkit-transform: rotate(-45deg);
+    }
+
+    .mtmMenu {
+        background: white;
+        box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.1), 0px 2px 4px rgba(0, 0, 0, 0.08);
+        border-radius: 8px;
+
+        ul {
+            list-style: none;
+            width: 100%;
+            margin-left: 0;
+            padding-left: 0;
+
+            li {
+                width: 100%;
+                .itemText {
+                    margin-left: 10px;
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 14px;
+                    line-height: 150%;
+                    color: #006F9E;
+                }
+
+                .itemIcon {
+                    position: relative;
+                    top: 6px;
+                    float: right;
+                    left: -10px;
+                }
+
+                .itemDesc {
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 13px;
+                    line-height: 160%;
+                    color: #525374;
+                    margin-left: 10px;
+                    margin-right: 10px;
+                }
+            }
+
+            li:hover {
+                background: lavender;
+            }
+        }
+    }
+
+    .mtmMenu:nth-child(2) {
+        position: absolute;
+        width: 240px;
+        left: 245px;
+        top: 56px;
+    }
+}

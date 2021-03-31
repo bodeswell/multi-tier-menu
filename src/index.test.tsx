@@ -1,7 +1,7 @@
-import { ExampleComponent } from '.'
+import { MultiTierMenu } from '.';
 
 describe('ExampleComponent', () => {
-  it('is truthy', () => {
-    expect(ExampleComponent).toBeTruthy()
-  })
-})
+    it('is truthy', () => {
+        expect(MultiTierMenu).toBeTruthy();
+    });
+});
