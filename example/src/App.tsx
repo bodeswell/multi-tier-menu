@@ -3,6 +3,10 @@ import 'multi-tier-menu/dist/index.css';
 import React, { Component, ReactComponentElement } from 'react';
 
 export default class App extends Component<any> {
+    public state = {
+        selection: ''
+    };
+
     private menuItems: MenuItem[] = [
         {
             label: 'Default Selection',
@@ -142,8 +146,13 @@ export default class App extends Component<any> {
 
     public render(): ReactComponentElement<any> {
         return (
-            <MultiTierMenu menuItems={this.menuItems}
-                           style={{ position: 'absolute', top: '100px', left: 'calc(50% - 125px)' }}/>
+            <div>
+                <MultiTierMenu menuItems={this.menuItems}
+                               callback={(item: MenuItem) =>
+                                   this.setState({ selection: `${item.value} selected.`})}
+                               style={{ position: 'absolute', top: '100px', left: 'calc(50% - 125px)' }}/>
+                <h1 style={{ textAlign: 'center', width: '100%'}}>{this.state.selection}</h1>
+            </div>
         );
     }
 }
