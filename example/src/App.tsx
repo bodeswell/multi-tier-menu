@@ -111,7 +111,7 @@ export default class App extends Component<any> {
             ]
         },
         {
-            label: 'qsadfasdfasfsdfsdfsdasdfsdfasdfsdaf',
+            label: 'Parent5',
             value: 'Parent5',
             separator: false,
             children: [
@@ -141,12 +141,6 @@ export default class App extends Component<any> {
                     separator: false
                 }
             ]
-        },
-        {
-            label: 'Parent6',
-            value: 'Parent6',
-            separator: false,
-            children: undefined
         }
     ];
 
