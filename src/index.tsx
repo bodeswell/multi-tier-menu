@@ -93,7 +93,7 @@ export class MultiTierMenu extends Component<any, MenuState> {
                         });
                     }}
                     onClick={(e) => this.sendSelection(e, menuItem)}>
-                    <span className={styles.itemText}>{menuItem.label}</span>
+                    <div className={styles.itemText}>{menuItem.label}</div>
                     {rightArrow}
                     {description}
                     {hasSeparator}
@@ -111,7 +111,7 @@ export class MultiTierMenu extends Component<any, MenuState> {
 
                 secondLayoutItems.push(
                     <li key={`item-${child.label}`} onClick={(e) => this.sendSelection(e, child)}>
-                        <span className={styles.itemText}>{child.label}</span>
+                        <div className={styles.itemText}>{child.label}</div>
                         {description}
                         {hasSeparator}
                     </li>

@@ -66,6 +66,11 @@
                     font-size: 14px;
                     line-height: 150%;
                     color: #006F9E;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    max-width: 80%;
+                    display: inline-block;
                 }
 
                 .itemIcon {
