@@ -2,6 +2,7 @@ import $ from 'jquery';
 import * as _ from 'lodash';
 import * as React from 'react';
 import { Component, ReactComponentElement } from 'react';
+import { ReactComponent as PlusIcon } from './plus-icon.svg';
 
 import 'typeface-poppins';
 import styles from './styles.scss';
@@ -16,7 +17,9 @@ export interface MenuItem {
 }
 
 interface MenuProps extends Component {
-    callback?: (item: MenuItem) => any
+    addCallback?: () => any;
+    addName?: string;
+    callback?: (item: MenuItem) => any;
     menuItems: MenuItem[];
     selection?: MenuItem;
 }
@@ -117,6 +120,15 @@ export class MultiTierMenu extends Component<any, MenuState> {
                     </li>
                 );
             }
+
+            if (this.props.addName) {
+                secondLayoutItems.push(
+                    <li key={`item-${this.props.addName}`} onClick={(e) => this.sendAddCallback(e)}>
+                        <PlusIcon className={styles.plusIcon} />
+                        <div className={styles.itemText}>{this.props.addName}</div>
+                    </li>
+                );
+            }
         }
 
         const layout: JSX.Element | null = layoutItems.length ? (
@@ -128,7 +140,7 @@ export class MultiTierMenu extends Component<any, MenuState> {
         ) : null;
 
         const secondLayout: JSX.Element | null = secondLayoutItems.length ? (
-            <div className={styles.mtmMenu} style={{top: `${this.state.hoverPosition + 56}px`}}>
+            <div className={styles.mtmMenu} style={{ top: `${this.state.hoverPosition + 56}px` }}>
                 <ul>
                     {secondLayoutItems}
                 </ul>
@@ -151,6 +163,12 @@ export class MultiTierMenu extends Component<any, MenuState> {
     private openMenu(): void {
         if (_.isEmpty(this.state.mainMenu))
             this.setState({ mainMenu: true });
+    }
+
+    private sendAddCallback(event: any): void {
+        event.stopPropagation();
+        this.setState({ mainMenu: false, secondaryMenu: undefined, hoverPosition: undefined });
+        if (this.props.addCallback) this.props.addCallback();
     }
 
     private sendSelection(event: any, selection: MenuItem): void {
