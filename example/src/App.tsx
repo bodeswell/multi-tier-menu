@@ -148,7 +148,7 @@ export default class App extends Component<any> {
         return (
             <div>
                 <MultiTierMenu menuItems={this.menuItems}
-                               addCallback={() => this.setState({ selection: `Add custom subcategory selected.`})}
+                               addCallback={(selection: MenuItem) => this.setState({ selection: selection.value })}
                                addName="Add custom subcategory"
                                callback={(item: MenuItem) =>
                                    this.setState({ selection: `${item.value} selected.`})}
