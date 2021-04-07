@@ -123,7 +123,7 @@ export class MultiTierMenu extends Component<any, MenuState> {
 
             if (this.props.addName) {
                 secondLayoutItems.push(
-                    <li key={`item-${this.props.addName}`} onClick={(e) => this.sendAddCallback(e, this.state.mainMenu)}>
+                    <li key={`item-${this.props.addName}`} onClick={(e) => this.sendAddCallback(e, this.state.selection)}>
                         <PlusIcon className={styles.plusIcon} />
                         <div className={styles.itemText}>{this.props.addName}</div>
                     </li>
