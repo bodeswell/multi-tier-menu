@@ -123,7 +123,7 @@ export class MultiTierMenu extends Component<any, MenuState> {
 
             if (this.props.addName) {
                 secondLayoutItems.push(
-                    <li key={`item-${this.props.addName}`} onClick={(e) => this.sendAddCallback(e)}>
+                    <li key={`item-${this.props.addName}`} onClick={(e) => this.sendAddCallback(e, this.state.mainMenu)}>
                         <PlusIcon className={styles.plusIcon} />
                         <div className={styles.itemText}>{this.props.addName}</div>
                     </li>
@@ -165,10 +165,10 @@ export class MultiTierMenu extends Component<any, MenuState> {
             this.setState({ mainMenu: true });
     }
 
-    private sendAddCallback(event: any): void {
+    private sendAddCallback(event: any, selection: MenuItem): void {
         event.stopPropagation();
         this.setState({ mainMenu: false, secondaryMenu: undefined, hoverPosition: undefined });
-        if (this.props.addCallback) this.props.addCallback();
+        if (this.props.addCallback) this.props.addCallback(selection);
     }
 
     private sendSelection(event: any, selection: MenuItem): void {
