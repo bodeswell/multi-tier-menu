@@ -17,7 +17,7 @@ export interface MenuItem {
 }
 
 interface MenuProps extends Component {
-    addCallback?: () => any;
+    addCallback?: (selection: MenuItem) => any;
     addName?: string;
     callback?: (item: MenuItem) => any;
     menuItems: MenuItem[];
@@ -123,7 +123,7 @@ export class MultiTierMenu extends Component<any, MenuState> {
 
             if (this.props.addName) {
                 secondLayoutItems.push(
-                    <li key={`item-${this.props.addName}`} onClick={(e) => this.sendAddCallback(e, this.state.selection)}>
+                    <li key={`item-${this.props.addName}`} onClick={(e) => this.sendAddCallback(e, this.state.secondaryMenu)}>
                         <PlusIcon className={styles.plusIcon} />
                         <div className={styles.itemText}>{this.props.addName}</div>
                     </li>
