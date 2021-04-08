@@ -32,6 +32,8 @@ interface MenuState {
 }
 
 export class MultiTierMenu extends Component<any, MenuState> {
+    private uuid: string = Math.floor(Math.random() * 8999999999 + 1000000000).toString();
+
     public state = {
         mainMenu: false,
         hoverPosition: 56,
@@ -179,7 +181,7 @@ export class MultiTierMenu extends Component<any, MenuState> {
 
     private startCloseListener(): void {
         this.stopCloseListener();
-        $(document).on('click.menuclose', (event: any) => {
+        $(document).on(`click.menuclose${this.uuid}`, (event: any) => {
             const $target: JQuery = $(event.target).first();
             if (!$target.hasClass(styles.mtmContainer) && !$target.parents(`.${styles.mtmContainer}`).length) {
                 this.setState({ mainMenu: false, secondaryMenu: undefined, hoverPosition: undefined });
@@ -190,6 +192,6 @@ export class MultiTierMenu extends Component<any, MenuState> {
     }
 
     private stopCloseListener(): void {
-        $(document).off('click.menuclose');
+        $(document).off(`click.menuclose${this.uuid}`);
     }
 }
