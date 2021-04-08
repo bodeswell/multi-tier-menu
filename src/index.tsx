@@ -60,7 +60,7 @@ export class MultiTierMenu extends Component<any, MenuState> {
     public render(): ReactComponentElement<any> {
         return (
             <div style={this.props.style}
-                 className={this.props.className ? this.props.className` ${styles.mtmContainer}` : styles.mtmContainer}
+                 className={this.props.className ? `${this.props.className} ${styles.mtmContainer}` : styles.mtmContainer}
                  onClick={this.openMenu.bind(this)}>
                 <div className={styles.selectText}>
                     {this.state.selection.label}
