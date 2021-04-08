@@ -5,6 +5,7 @@
   "author": "avigold",
   "license": "MIT",
   "repository": "/bodeswell/multi-tier-menu",
+  "homepage": "https://www.bodeswell.io/",
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.tsx",
@@ -67,5 +68,13 @@
     "jquery": "^3.6.0",
     "lodash": "^4.17.21",
     "typeface-poppins": "^1.1.13"
-  }
+  },
+  "keywords": [
+    "react",
+    "menu",
+    "component",
+    "submenu",
+    "contextmenu",
+    "dropdown"
+  ]
 }
