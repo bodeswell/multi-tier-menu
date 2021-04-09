@@ -163,8 +163,10 @@ export default class App extends Component<any> {
         return (
             <div>
                 <MultiTierMenu menuItems={this.menuItems}
-                               addCallback={(selection: MenuItem) => this.setState({ selection: selection.value })}
+                               addCallback={(selection: MenuItem) =>
+                                   this.setState({ selection: `Adding custom subcategory to ${selection.value}` })}
                                addName="Add custom subcategory"
+                               className="customPrefix"
                                callback={(item: MenuItem) =>
                                    this.setState({ selection: `${item.value} selected.`})}
                                style={{ position: 'absolute', top: '100px', left: 'calc(50% - 125px)' }}/>
@@ -179,3 +181,7 @@ export default class App extends Component<any> {
 
 Run `yarn install && yarn start` in the root of the project. 
 Open a second tab, then run `cd example/ && yarn install && yarn start`.
+
+
+## Styling
+Passing a `className` to the `MultiTierMenu` will prefix that class to all the main elements, for easier styling.
