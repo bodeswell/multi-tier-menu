@@ -22,6 +22,7 @@ interface MenuProps extends Component {
     callback?: (item: MenuItem) => any;
     menuItems: MenuItem[];
     selection?: MenuItem;
+    placeholder?: string
 }
 
 interface MenuState {
@@ -42,8 +43,13 @@ export class MultiTierMenu extends Component<any, MenuState> {
     };
 
     public static getDerivedStateFromProps(props: MenuProps, prevState: MenuState): MenuState {
+        const placeHolder: MenuItem|undefined = props.placeholder ? {
+            label: props.placeholder,
+            value: props.placeholder,
+            separator: false
+        } : undefined;
         if (_.isEmpty(prevState.selection)) {
-            return { ...prevState, selection: props.selection || props.menuItems[0] };
+            return { ...prevState, selection: props.selection || placeHolder || props.menuItems[0] };
         } else if (props.selection && prevState.selection && props.selection.value !== prevState.selection.value) {
             return { ...prevState, selection: props.selection };
         }
