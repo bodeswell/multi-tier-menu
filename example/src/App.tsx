@@ -80,7 +80,7 @@ export default class App extends Component<any> {
         },
         {
             label: 'Parent4',
-            value: 'Parent1',
+            value: 'Parent4',
             separator: false,
             children: [
                 {
