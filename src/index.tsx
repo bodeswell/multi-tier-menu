@@ -84,7 +84,8 @@ export class MultiTierMenu extends Component<any, MenuState> {
             const rightArrow: JSX.Element | null = menuItem.children ?
                 <i className={`${styles.arrow} ${styles.arrowRight} ${styles.itemIcon}`}/> : null;
             const description: JSX.Element | null = menuItem.description ?
-                <div className={styles.itemDesc}>
+                <div className={this.props.className ?
+                    `${this.props.className}ItemDesc ${styles.itemDesc}` : styles.itemDesc}>
                     {menuItem.description}
                 </div> : null;
             const hasSeparator: JSX.Element | null = menuItem.separator ? <hr/> : null;
@@ -98,7 +99,8 @@ export class MultiTierMenu extends Component<any, MenuState> {
                         });
                     }}
                     onClick={(e) => this.sendSelection(e, menuItem)}>
-                    <div className={styles.itemText}>{menuItem.label}</div>
+                    <div className={this.props.className ?
+                        `${this.props.className}ItemText ${styles.itemText}` : styles.itemText}>{menuItem.label}</div>
                     {rightArrow}
                     {description}
                     {hasSeparator}
@@ -109,14 +111,16 @@ export class MultiTierMenu extends Component<any, MenuState> {
         if (this.state.secondaryMenu && this.state.secondaryMenu.children) {
             for (const child of this.state.secondaryMenu.children) {
                 const description: JSX.Element | null = child.description ?
-                    <div className={styles.itemDesc}>
+                    <div className={this.props.className ?
+                        `${this.props.className}ItemDesc ${styles.itemDesc}` : styles.itemDesc}>
                         {child.description}
                     </div> : null;
                 const hasSeparator: JSX.Element | null = child.separator ? <hr/> : null;
 
                 secondLayoutItems.push(
                     <li key={`item-${child.label}`} onClick={(e) => this.sendSelection(e, child)}>
-                        <div className={styles.itemText}>{child.label}</div>
+                        <div className={this.props.className ?
+                            `${this.props.className}ItemText ${styles.itemText}` : styles.itemText}>{child.label}</div>
                         {description}
                         {hasSeparator}
                     </li>
@@ -126,7 +130,8 @@ export class MultiTierMenu extends Component<any, MenuState> {
             if (this.props.addName) {
                 secondLayoutItems.push(
                     <li key={`item-${this.props.addName}`} onClick={(e) => this.sendAddCallback(e, this.state.secondaryMenu)}>
-                        <PlusIcon className={styles.plusIcon} />
+                        <PlusIcon className={this.props.className ?
+                            `${this.props.className}PlusIcon ${styles.plusIcon}` : styles.itemText} />
                         <div className={styles.itemText}>{this.props.addName}</div>
                     </li>
                 );
@@ -134,7 +139,8 @@ export class MultiTierMenu extends Component<any, MenuState> {
         }
 
         const layout: JSX.Element | null = layoutItems.length ? (
-            <div className={styles.mtmMenu}>
+            <div className={this.props.className ?
+                `${this.props.className}MtmMenu ${styles.mtmMenu}` : styles.mtmMenu}>
                 <ul>
                     {layoutItems}
                 </ul>
@@ -142,7 +148,9 @@ export class MultiTierMenu extends Component<any, MenuState> {
         ) : null;
 
         const secondLayout: JSX.Element | null = secondLayoutItems.length ? (
-            <div className={styles.mtmMenu} style={{ top: `${this.state.hoverPosition + 56}px` }}>
+            <div className={this.props.className ?
+                `${this.props.className}MtmMenu ${styles.mtmMenu}` : styles.mtmMenu}
+                 style={{ top: `${this.state.hoverPosition + 56}px` }}>
                 <ul>
                     {secondLayoutItems}
                 </ul>
