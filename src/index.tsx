@@ -23,6 +23,7 @@ interface MenuProps extends Component {
     menuItems: MenuItem[];
     selection?: MenuItem;
     placeholder?: string
+    bland?: boolean;
 }
 
 interface MenuState {
@@ -66,9 +67,12 @@ export class MultiTierMenu extends Component<any, MenuState> {
     }
 
     public render(): ReactComponentElement<any> {
+        const containerClass: string = this.props.className ?
+            `${this.props.className} ${this.props.bland ? styles.mtmContainerBland : styles.mtmContainer}` :
+            ` ${this.props.bland ? styles.mtmContainerBland : styles.mtmContainer}`;
         return (
             <div style={this.props.style}
-                 className={this.props.className ? `${this.props.className} ${styles.mtmContainer}` : styles.mtmContainer}
+                 className={containerClass}
                  onClick={this.openMenu.bind(this)}>
                 <div className={styles.selectText}>
                     {this.state.selection.label}
@@ -195,10 +199,11 @@ export class MultiTierMenu extends Component<any, MenuState> {
     }
 
     private startCloseListener(): void {
+        const containerClass: string = this.props.bland ? styles.mtmContainerBland : styles.mtmContainer;
         this.stopCloseListener();
         $(document).on(`click.menuclose${this.uuid}`, (event: any) => {
             const $target: JQuery = $(event.target).first();
-            if (!$target.hasClass(styles.mtmContainer) && !$target.parents(`.${styles.mtmContainer}`).length) {
+            if (!$target.hasClass(containerClass) && !$target.parents(`.${containerClass}`).length) {
                 this.setState({ mainMenu: false, secondaryMenu: undefined, hoverPosition: undefined });
             } else {
                 return;

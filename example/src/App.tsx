@@ -153,6 +153,7 @@ export default class App extends Component<any> {
                                addName="Add custom subcategory"
                                className="customPrefix"
                                placeholder="Click Me"
+                               bland={false}
                                callback={(item: MenuItem) =>
                                    this.setState({ selection: `${item.value} selected.`})}
                                style={{ position: 'absolute', top: '100px', left: 'calc(50% - 125px)' }}/>
