@@ -11,7 +11,6 @@ npm install --save multi-tier-menu
 ```
 
 ## Usage
-
 ```tsx
 import { MenuItem, MultiTierMenu } from 'multi-tier-menu';
 import 'multi-tier-menu/dist/index.css';
@@ -167,6 +166,7 @@ export default class App extends Component<any> {
                                    this.setState({ selection: `Adding custom subcategory to ${selection.value}` })}
                                addName="Add custom subcategory"
                                className="customPrefix"
+                               bland={false}
                                callback={(item: MenuItem) =>
                                    this.setState({ selection: `${item.value} selected.`})}
                                style={{ position: 'absolute', top: '100px', left: 'calc(50% - 125px)' }}/>
@@ -182,6 +182,10 @@ export default class App extends Component<any> {
 Run `yarn install && yarn start` in the root of the project. 
 Open a second tab, then run `cd example/ && yarn install && yarn start`.
 
-
 ## Styling
+
 Passing a `className` to the `MultiTierMenu` will prefix that class to all the main elements, for easier styling.
+
+## Themes
+
+Switch from the default to the `bland` theme by setting the `bland` prop to `true`.
