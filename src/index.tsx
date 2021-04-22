@@ -157,7 +157,8 @@ export class MultiTierMenu extends Component<any, MenuState> {
             </div>
         ) : null;
 
-        const menuPosition: number = this.state.hoverPosition + 56 - ((secondLayoutItems.length * 34 / 2));
+        const menuHeight: number = this.props.bland ? 40 : 34;
+        const menuPosition: number = this.state.hoverPosition + 56 - ((secondLayoutItems.length * menuHeight / 2));
         const secondLayout: JSX.Element | null = secondLayoutItems.length ? (
             <div className={this.props.className ?
                 `${this.props.className}MtmMenu ${styles.mtmMenu}` : styles.mtmMenu}
