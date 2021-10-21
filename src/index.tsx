@@ -22,7 +22,7 @@ interface MenuProps extends Component {
     callback?: (item: MenuItem) => any;
     menuItems: MenuItem[];
     selection?: MenuItem;
-    placeholder?: string
+    placeholder?: string;
     bland?: boolean;
 }
 
@@ -88,8 +88,8 @@ export class MultiTierMenu extends Component<any, MenuState> {
             return null;
         }
 
-        let layoutItems: JSX.Element[] = [];
-        let secondLayoutItems: JSX.Element[] = [];
+        const layoutItems: JSX.Element[] = [];
+        const secondLayoutItems: JSX.Element[] = [];
         for (const menuItem of this.props.menuItems) {
             const rightArrow: JSX.Element | null = menuItem.children ?
                 <i className={`${styles.arrow} ${styles.arrowRight} ${styles.itemIcon}`}/> : null;
@@ -206,8 +206,6 @@ export class MultiTierMenu extends Component<any, MenuState> {
             const $target: JQuery = $(event.target).first();
             if (!$target.hasClass(containerClass) && !$target.parents(`.${containerClass}`).length) {
                 this.setState({ mainMenu: false, secondaryMenu: undefined, hoverPosition: undefined });
-            } else {
-                return;
             }
         });
     }
