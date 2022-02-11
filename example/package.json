@@ -19,7 +19,7 @@
     "@types/react": "link:../node_modules/@types/react",
     "@types/react-dom": "link:../node_modules/@types/react-dom",
     "multi-tier-menu": "link:..",
-    "node-sass": "4.14.1",
+    "node-sass": "7.0.0",
     "react": "link:../node_modules/react",
     "react-dom": "link:../node_modules/react-dom",
     "react-scripts": "link:../node_modules/react-scripts",
